@@ -11,3 +11,5 @@
         storage.restoreItems();
     };
 })();
+
+Storage.prototype.notificator = new Notificator();

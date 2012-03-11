@@ -3,11 +3,9 @@
 */
 function Storage() {
     // the list that contains the items 
-    var todoList = document.getElementById("todoList");
-    // TODO instead of this, we should use a function
-    var hasAskedToNotify = false;
+    var todoList = document.getElementById("todoList");    
     var me = this;
-
+    
     /**
     * Restore the items previously saved from the data source.
     */
@@ -24,6 +22,7 @@ function Storage() {
                 todoList.innerHTML = itemsList.join('');
             });
         });
+            
     };
 
     /**
@@ -38,6 +37,8 @@ function Storage() {
             todoItemsAsText.push(todoItem.innerText || todoItem.textContent);
         }
         me.saveItemsToDataSource(todoItemsAsText);
+        
+        me.notificator.notify('success', 'Synchronization results', 'TODO items were synchronized');
     };
 
     /**
@@ -45,6 +46,7 @@ function Storage() {
     */
     me.clearItems = function () {
         me.removeItems();
+        me.notificator.notify('success', 'Synchronization results', 'TODO items were cleared');
     };
     
     /**** Functions to implement to make this work ****/
