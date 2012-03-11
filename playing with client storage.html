@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Playing with content editable</title>
+    <link href="css/todolist.css" rel="stylesheet">
+</head>
+<body>
+    <h1>
+        Testing the edition of content
+    </h1>
+    <section>
+        <h1>TODO List</h1>
+        <ul contenteditable="true" id="todoList">
+            <li>insert item</li>
+        </ul>
+        <div id="commandContainer">
+            <button id="saveButton">Save</button>
+            <button id="clearButton">Clear</button>
+        </div>
+    </section>
+    <script src="js/clientstorage.js"></script>
+    <script src="js/todolist.js"></script>
+</body>
+</html>
