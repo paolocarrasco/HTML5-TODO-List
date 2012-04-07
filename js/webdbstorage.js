@@ -4,7 +4,7 @@ var storage = new Storage();
     var db; // the variable that will contain the database object
     var DB_NAME = 'tododb';
     var DB_DESCRIPTION = 'TODO List Database';
-    var DB_VERSION = '1.0.0';
+    var DB_VERSION = ''; // in order to make upgrades from now on
     var DB_SIZE = 2097152;
     var CREATE_TABLE_STATEMENT = 'CREATE TABLE IF NOT EXISTS item (text)';
     var INSERT_STATEMENT = 'INSERT INTO item (text) VALUES (?)';
@@ -48,6 +48,7 @@ var storage = new Storage();
         if(!db) return;
         // make the insertions in a single transaction
         db.transaction(function(tx) {
+            tx.executeSql(DELETE_STATEMENT, []);
             // iterate over all the items received to insert them
             for(var todoItem in todoItemsAsText) {
                 tx.executeSql(INSERT_STATEMENT, [todoItemsAsText[todoItem]]);

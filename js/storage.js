@@ -14,6 +14,8 @@ function Storage() {
         me.initialize(function() {
             // retrieve the items from the storage
             me.retrieveItemsFromDataSource(function(itemsLoaded) {
+                // don't do anything if nothing is loaded
+                if(!itemsLoaded || !itemsLoaded.length) return;
                 var itemsList = [];
                 // iterate and render the items as HTML list items
                 for(var item in itemsLoaded) {
