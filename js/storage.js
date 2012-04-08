@@ -21,6 +21,7 @@ function Storage() {
                 for(var item in itemsLoaded) {
                     itemsList.push("<li>" + itemsLoaded[item] + "</li>");
                 }
+                me.notificator.notify('success', 'Successful Loading', 'TODO items were restored');
                 todoList.innerHTML = itemsList.join('');
             });
         });
