@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TODO List</title>
+    <link href="css/todolist.css" rel="stylesheet">
+</head>
+<body>
+    <h1 title="You can edit this... try it!" contenteditable="true">
+        Hey! C'mon and do the stuff!
+    </h1>
+    <section>
+        <h1>TODO List</h1>
+        <input type="text" autofocus title="Type your TODO item here" placeholder="Insert item..." id="todoitemTextbox">
+        <button id="insertItemButton">Add</button>
+        <ul id="todoList">
+            <li>insert item</li>
+        </ul>
+        <div id="commandContainer">
+            <button id="saveButton">Save</button>
+            <button id="clearButton">Clear</button>
+        </div>
+    </section>
+    <script src="js/storage.js"></script>
+    <script src="js/webdbstorage.js"></script>
+    <script src="js/notificator.js"></script>
+    <script src="js/todolist.js"></script>
+</body>
+</html>
