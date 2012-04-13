@@ -1,0 +1,19 @@
+CACHE MANIFEST
+# this is not relevant, but it matters 
+# if we want to notify a change in a file
+# version 1.0.0
+
+CACHE:
+/html5/todolist.html
+/html5/css/todolist.css
+/html5/js/clientstorage.js
+/html5/js/notificator.js
+/html5/js/storage.js
+/html5/js/todolist.js
+/html5/js/webdbstorage.js
+/html5/js/websocket.js
+/html5/img/information.gif
+/html5/img/success.png
+
+NETWORK:
+*
