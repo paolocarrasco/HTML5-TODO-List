@@ -1,5 +1,4 @@
-function WebSocket(receptionElementQuery) {
-    var HOST = "ws://localhost:12345/websocket/server.php";
+function WebSocketConnector(url) {
     // it contains the web socket connection
     var socket;
     var me = this;
@@ -29,12 +28,12 @@ function WebSocket(receptionElementQuery) {
 
     function initialize() {
         try {
-            socket = new WebSocket(HOST);
+            socket = new WebSocket(url);
             console.log('WebSocket - status ' + socket.readyState);
             // Executed when the connection was established
-            socket.onopen    = function(msg){ console.log("Welcome - status " + this.readyState); };
+            socket.onopen = function(msg){ console.log("Welcome - status " + this.readyState + '\n' + msg); };
             // Executed when the connection is closed
-            socket.onclose   = function(msg){ console.log("Disconnected - status " + this.readyState); };
+            socket.onclose   = function(msg){ console.log("Disconnected - status " + this.readyState + '\n' + msg); };
             // Executed when the server sends a message to the client
             socket.onmessage = receiveMessage;
         }
@@ -45,6 +44,5 @@ function WebSocket(receptionElementQuery) {
     
     function receiveMessage(){
         console.log("Message received: " + msg.data);
-        document.querySelector(receptionElementQuery).value = msg.data;
     };
 }
