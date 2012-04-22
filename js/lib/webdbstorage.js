@@ -1,6 +1,4 @@
-var storage = new Storage();
-
-(function() {
+namespace('com.abaris', function(ns) {
     var db; // the variable that will contain the database object
     var DB_NAME = 'tododb';
     var DB_DESCRIPTION = 'TODO List Database';
@@ -11,7 +9,7 @@ var storage = new Storage();
     var SELECT_STATEMENT = 'SELECT text FROM item';
     var DELETE_STATEMENT = 'DELETE FROM item';
    
-    Storage.prototype.initialize = function(successCallback) {
+    ns.Storage.prototype.initialize = function(successCallback) {
         // if no openDatabase function... nothing to do with this app
         if(!window.openDatabase) return;
         // creating the database with a size of 2 * 1024 * 1024 bytes
@@ -22,11 +20,11 @@ var storage = new Storage();
         db.transaction(function (tx) {
             tx.executeSql(CREATE_TABLE_STATEMENT);
             // call the retrieval of items
-            Storage.prototype.retrieveItemsFromDataSource.call(this, successCallback);
+            ns.Storage.prototype.retrieveItemsFromDataSource.call(this, successCallback);
         });
     };
 
-    Storage.prototype.retrieveItemsFromDataSource = function(successCallback) {
+    ns.Storage.prototype.retrieveItemsFromDataSource = function(successCallback) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         db.transaction(function (tx) {
@@ -43,7 +41,7 @@ var storage = new Storage();
         });
     };
 
-    Storage.prototype.saveItemsToDataSource = function(todoItemsAsText) {
+    ns.Storage.prototype.saveItemsToDataSource = function(todoItemsAsText) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         // make the insertions in a single transaction
@@ -56,7 +54,7 @@ var storage = new Storage();
         });        
     };
 
-    Storage.prototype.removeItems = function() {
+    ns.Storage.prototype.removeItems = function() {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         // the query to delete the items
@@ -65,4 +63,4 @@ var storage = new Storage();
         });
     };
 
-})();
+});

@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Playing with content editable</title>
+    <title>Playing with web storage</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
     <link href="css/todolist.css" rel="stylesheet">
 </head>
 <body>
     <h1>
-        Testing the edition of content
+        Testing the web storage
     </h1>
     <section>
         <h1>TODO List</h1>
@@ -19,9 +21,10 @@
             <button id="clearButton">Clear</button>
         </div>
     </section>
-    <script src="js/storage.js"></script>
-    <script src="js/clientstorage.js"></script>
-    <script src="js/notificator.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="js/lib/namespace.js"></script>
+    <script src="js/lib/storage.js"></script>
+    <script src="js/lib/clientstorage.js"></script>
+    <script src="js/lib/notificator.js"></script>
+    <script src="js/todolist-storage.js"></script>
 </body>
 </html>

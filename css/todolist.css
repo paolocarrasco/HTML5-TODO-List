@@ -6,7 +6,7 @@ ul:active, ul:focus { cursor: text; }
 li { width: 150px; line-height: 30px; min-height: 30px; display: block; background: #ffa000; margin: 2px; padding: 5px; border-radius: 10px; }
 li:active, li:focus, li:hover { border: #f00 solid 2px; }
 li:active { background: #f00; color: #fff; }
-button { background: #ff0; border-radius: 20px; padding: 5px; width: 80px; font-weight: bold; cursor: pointer; }
+button { background: #ff0; border-radius: 20px; padding: 5px; width: 80px; cursor: pointer; }
 button:hover { background: #ffa000; }
 button:active { background: #fa0; color: #fff; }
 #commandContainer { bottom: 2px; z-index: 100; position: fixed; background: red; padding: 5px; border-radius: 5px; }

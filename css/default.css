@@ -1,0 +1,38 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #555;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	color: #555;
+}
+
+h1 {
+	font-size: 2.8em;
+}
+
+article h1, section h1, aside h1, nav h1 {
+	font-size: 2.2em;
+}
+
+h2 {
+	font-size: 2.4em;
+}
+
+article h2, section h2, aside h2, nav h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.6em;
+}
+
+article h3, section h3, aside h3, nav h3 {
+	font-size: 1.5em;
+}
+
+p, ul, ol {
+	line-height: 180%;
+}

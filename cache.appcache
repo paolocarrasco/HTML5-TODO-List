@@ -5,15 +5,21 @@ CACHE MANIFEST
 
 CACHE:
 /html5/todolist.html
+/html5/css/reset.css
+/html5/css/default.css
 /html5/css/todolist.css
-/html5/js/clientstorage.js
-/html5/js/notificator.js
-/html5/js/storage.js
-/html5/js/todolist.js
-/html5/js/webdbstorage.js
-/html5/js/websocket.js
+/html5/js/lib/clientstorage.js
+/html5/js/lib/notificator.js
+/html5/js/lib/storage.js
+/html5/js/lib/webdbstorage.js
+/html5/js/lib/websocket.js
+/html5/js/todolist-storage.js
+/html5/js/todolist-storage.js
 /html5/img/information.gif
 /html5/img/success.png
 
 NETWORK:
 *
+
+FALLBACK:
+/html5/ /html5/offline.html

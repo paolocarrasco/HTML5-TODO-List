@@ -3,16 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>TODO List</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
     <link href="css/todolist.css" rel="stylesheet">
 </head>
 <body>
-    <h1 title="You can edit this... try it!" contenteditable="true">
-        Hey! C'mon and do the stuff!
+    <h1 title="You can edit this anytime" contenteditable="true">
+        Name your TODO List
     </h1>
     <section>
         <h1>TODO List</h1>
-        <input type="text" autofocus title="Type your TODO item here" placeholder="Insert item..." id="todoitemTextbox">
-        <button id="insertItemButton">Add</button>
+        <!--input type="text" autofocus title="Type your TODO item here" placeholder="Insert item..." id="todoitemTextbox">
+        <button id="insertItemButton">Add</button -->
         <ul id="todoList">
             <li>insert item</li>
         </ul>
@@ -21,10 +23,13 @@
             <button id="clearButton">Clear</button>
         </div>
     </section>
-    <script src="js/storage.js"></script>
-    <script src="js/webdbstorage.js"></script>
-    <script src="js/notificator.js"></script>
-    <script src="js/websocket.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="js/lib/namespace.js"></script>
+    <script src="js/lib/connectivityhandler.js"></script>
+    <script src="js/lib/storage.js"></script>
+    <script src="js/lib/webdbstorage.js"></script>
+    <script src="js/lib/notificator.js"></script>
+    <script src="js/lib/websocket.js"></script>
+    <script src="js/todolist-storage.js"></script>
+    <script src="js/todolist-websocket.js"></script>
 </body>
 </html>
