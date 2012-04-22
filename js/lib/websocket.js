@@ -4,9 +4,6 @@ namespace('com.abaris', function(ns) {
         var socket;
         var me = this;
         
-        // initializing the websocket
-        initialize();
-
         me.send = function(msg){
             if (!msg) {
                 console.warn('Message to be sent can not be empty');
@@ -27,27 +24,34 @@ namespace('com.abaris', function(ns) {
             socket = null;
         }
 
-        function initialize() {
+        // initializing the websocket
+        me.initialize = function() {
             try {
                 socket = new WebSocket(url);
                 // Executed when the connection was established
                 socket.onopen = function(e){
                     console.log('Status : Open ' + '\n' + e)
+                    me.onopen(e);
                 };
                 // Executed when the connection is closed
                 socket.onclose = function(e){
                     console.log('Disconnected - status code: ' + this.readyState + '\n' + e);
+                    me.onclose(e);
                 };
                 // Executed when the server sends a message to the client
-                socket.onmessage = receiveMessage;
+                socket.onmessage = function(msg) {
+                    console.log("Message received: " + msg.data);
+                    me.onmessage(msg);
+                };
             }
             catch(ex) {
                 console.error('Problems when initializing the websocket. Details:\n' + ex);
             }
         }
 
-        function receiveMessage(msg){
-            console.log("Message received: " + msg.data);
-        };
+        // these functions should be overriden
+        me.onopen = function(e) {};
+        me.onclose = function(e) {};
+        me.onmessage = function(msg) {};
     }
 });

@@ -1,4 +1,5 @@
 body, html { font-family: Arial, Verdana, sans-serif; color: #333;}
+body { width: 350px; }
 ul { cursor: pointer; width: 150px; padding: 5px; margin-bottom: 45px; }
 /* this is for avoiding Chrome outlining on focus */
 ul:hover, ul:active, ul:focus { outline: transparent none 0; }
@@ -10,3 +11,7 @@ button { background: #ff0; border-radius: 20px; padding: 5px; width: 80px; curso
 button:hover { background: #ffa000; }
 button:active { background: #fa0; color: #fff; }
 #commandContainer { bottom: 2px; z-index: 100; position: fixed; background: red; padding: 5px; border-radius: 5px; }
+.applicationStatus { width: 100px; position: fixed; right: 0; padding: 2px; background: #f00; border-radius: 20px 0 0 20px; color: #fff;}
+.applicationStatus p { text-align: right; line-height: 22px; height: 22px;}
+.connectivityStatus { width: 22px; height: 22px; display: inline-block; background: url('../img/disconnected.png') 30% 25% no-repeat; }
+.connectivityStatus.connected { background-image: url('../img/connected.png'); }
