@@ -12,14 +12,19 @@
         Name your TODO List
     </h1>
     <aside class="applicationStatus">
-        <p id="internetConnectivity">Internet: <span class="connectivityStatus">&nbsp;</span></p>
-        <p id="websocketConnectivity">Websocket: <span class="connectivityStatus">&nbsp;</span></p>
+        <h1>Application status</h1>
+        <ul>
+            <li id="internetConnectivity">Internet <span class="connectivityStatus">&nbsp;</span></li>
+            <li id="websocketConnectivity">Websocket <span class="connectivityStatus">&nbsp;</span></li>
+            <li id="userLocation">Location <span class="connectivityStatus">&nbsp;</span></li>
+        </ul>
+        <div id="userLocationMap">&nbsp;</div>
     </aside>
     <section>
         <h1>TODO List</h1>
         <!--input type="text" autofocus title="Type your TODO item here" placeholder="Insert item..." id="todoitemTextbox">
         <button id="insertItemButton">Add</button -->
-        <ul id="todoList">
+        <ul id="todoList" contenteditable>
             <li>insert item</li>
         </ul>
         <div id="commandContainer">
@@ -33,6 +38,7 @@
     <script src="js/lib/notificator.js"></script>
     <script src="js/lib/websocket.js"></script>
     <script src="js/todolist-storage.js"></script>
+    <script src="js/todolist-location.js"></script>
     <script src="js/todolist-connectivity.js"></script>
     <script src="js/todolist-websocket.js"></script>
 </body>

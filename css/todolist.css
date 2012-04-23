@@ -1,17 +1,19 @@
 body, html { font-family: Arial, Verdana, sans-serif; color: #333;}
 body { width: 350px; }
-ul { cursor: pointer; width: 150px; padding: 5px; margin-bottom: 45px; }
+#todoList { cursor: pointer; width: 150px; padding: 5px; margin-bottom: 45px; }
 /* this is for avoiding Chrome outlining on focus */
-ul:hover, ul:active, ul:focus { outline: transparent none 0; }
-ul:active, ul:focus { cursor: text; }
-li { width: 150px; line-height: 30px; min-height: 30px; display: block; background: #ffa000; margin: 2px; padding: 5px; border-radius: 10px; }
-li:active, li:focus, li:hover { border: #f00 solid 2px; }
-li:active { background: #f00; color: #fff; }
+#todoList:hover, #todoList:active, #todoList:focus { outline: transparent none 0; }
+#todoList:active, #todoList:focus { cursor: text; }
+#todoList li { width: 150px; line-height: 30px; min-height: 30px; display: block; background: #ffa000; margin: 2px; padding: 5px; border-radius: 10px; }
+#todoList li:active, #todoList li:focus, #todoList li:hover { border: #f00 solid 2px; }
+#todoList li:active { background: #f00; color: #fff; }
 button { background: #ff0; border-radius: 20px; padding: 5px; width: 80px; cursor: pointer; }
 button:hover { background: #ffa000; }
 button:active { background: #fa0; color: #fff; }
 #commandContainer { bottom: 2px; z-index: 100; position: fixed; background: red; padding: 5px; border-radius: 5px; }
-.applicationStatus { width: 100px; position: fixed; right: 0; padding: 2px; background: #f00; border-radius: 20px 0 0 20px; color: #fff;}
-.applicationStatus p { text-align: right; line-height: 22px; height: 22px;}
-.connectivityStatus { width: 22px; height: 22px; display: inline-block; background: url('../img/disconnected.png') 30% 25% no-repeat; }
+.applicationStatus { min-width: 250px; position: fixed; right: 0; padding: 2px; background: #f00; border-radius: 20px 0 0 20px; color: #fff;}
+.applicationStatus h1 { text-align: center; }
+.applicationStatus li { line-height: 22px; height: 22px; padding: 5px; }
+.connectivityStatus { width: 22px; height: 22px; display: inline-block; background: url('../img/disconnected.png') 30% 25% no-repeat; position: absolute; right: 0; }
 .connectivityStatus.connected { background-image: url('../img/connected.png'); }
+#userLocationMap { padding: 15px; text-align: center; }

@@ -36,3 +36,5 @@ article h3, section h3, aside h3, nav h3 {
 p, ul, ol {
 	line-height: 180%;
 }
+
+.hidden { display: none; }

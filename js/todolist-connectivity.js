@@ -2,7 +2,7 @@
     var applicationStatus = document.querySelector('#internetConnectivity .connectivityStatus');
     
     window.addEventListener('load', function() {
-        if(navigator.online) 
+        if(navigator.onLine) 
             applicationStatus.classList.toggle('connected');
     });
 

@@ -30,12 +30,12 @@ namespace('com.abaris', function(ns) {
                 socket = new WebSocket(url);
                 // Executed when the connection was established
                 socket.onopen = function(e){
-                    console.log('Status : Open ' + '\n' + e)
+                    console.log('Open - status code: ' + this.readyState);
                     me.onopen(e);
                 };
                 // Executed when the connection is closed
                 socket.onclose = function(e){
-                    console.log('Disconnected - status code: ' + this.readyState + '\n' + e);
+                    console.log('Disconnected - status code: ' + this.readyState);
                     me.onclose(e);
                 };
                 // Executed when the server sends a message to the client

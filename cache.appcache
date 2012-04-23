@@ -14,7 +14,9 @@ CACHE:
 /html5/js/lib/webdbstorage.js
 /html5/js/lib/websocket.js
 /html5/js/todolist-storage.js
-/html5/js/todolist-storage.js
+/html5/js/todolist-location.js
+/html5/js/todolist-connectivity.js
+/html5/js/todolist-websocket.js
 /html5/img/information.gif
 /html5/img/success.png
 

@@ -6,8 +6,12 @@
         var host = 'ws://abaris.com.pe:8787/jWebSocket/jWebSocket';
         webSocketConnector = new com.abaris.WebSocketConnector(host);
 
-        webSocketConnector.onopen = toggleConnectionClass;
-        webSocketConnector.onclose = toggleConnectionClass;
+        webSocketConnector.onopen = function () {
+            websocketStatus.classList.add('connected');
+        }
+        webSocketConnector.onclose = function () {
+            websocketStatus.classList.remove('connected');
+        }
 
         webSocketConnector.initialize();
     });
@@ -16,7 +20,4 @@
         webSocketConnector.quit();
     });
 
-    function toggleConnectionClass() {
-        websocketStatus.classList.toggle('connected');
-    }
 })();
