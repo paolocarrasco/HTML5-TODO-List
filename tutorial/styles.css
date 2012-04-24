@@ -1,0 +1,19 @@
+/* Css3 selector demo by www.csstemplatesweb.com */
+ 
+* { margin: 0; padding: 0; outline: 0; }
+body { background-color: #2f3135; color: #fff; }
+h1 { font-family: "Tahoma"; color: #fff; font-weight: normal; margin:0 0 40px 0; }
+h2 { font-family: "Tahoma"; color: #ececec; font-weight: normal; margin:0 0 30px 30px; }
+h3 { font-family: "Tahoma"; color: #fff; font-weight: normal; margin:0 0 10px 30px; }
+img { border: none; }
+#container { width: 960px; margin: 20px auto; }
+ 
+ul { margin: 0 0 15px 60px; }
+ul.odd li:nth-child(odd) { color: blue; margin-left: 15px; }
+ul.even li:nth-child(even) { color: green; margin-left: 15px; }
+ul.every3 li:nth-child(3n) { color: orange; margin-left: 15px; }
+
+.highlight { background: yellow; color: black; }
+
+p {margin:20px 0 0 40px;}
+a {color:#fff;}
