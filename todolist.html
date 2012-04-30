@@ -3,22 +3,52 @@
 <head>
     <meta charset="utf-8">
     <title>TODO List</title>
+    <!-- In dev mode is ok to put all these files, but in prod -->
+    <!-- they should be minified and packaged in a single file -->
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet">
     <link href="css/todolist.css" rel="stylesheet">
+    <script src="js/lib/namespace.js"></script>
+    <script src="js/lib/storage.js"></script>
+    <script src="js/lib/webdbstorage.js"></script>
+    <script src="js/lib/notificator.js"></script>
+    <script src="js/lib/websocket.js"></script>
 </head>
 <body>
     <h1 id="todoListTitle" title="You can edit this anytime" contenteditable="true">
         Name your TODO List
     </h1>
+    <form name="loginForm" id="loginForm" method="POST" action="#">
+        <fieldset>
+            <label for="username">Username</label>
+            <input type="text" placeholder="Type the username" required autofocus name="username" maxlength="10">
+        </fieldset>
+        <fieldset>
+            <label for="password">Password</label>
+            <input type="password" required name="password" placeholder="Type the password" maxlength="10">
+        </fieldset>
+        <div>
+            <input type="submit" value="Login">
+            <input type="reset" value="Cancel">
+        </div>
+    </form>
     <aside class="applicationStatus">
         <h1>Application status</h1>
         <ul>
             <li id="internetConnectivity">Internet <span class="connectivityStatus">&nbsp;</span></li>
             <li id="websocketConnectivity">Websocket <span class="connectivityStatus">&nbsp;</span></li>
+            <li id="sessionConnectivity">Session <span class="connectivityStatus">&nbsp;</span></li>
             <li id="userLocation">Location <span class="connectivityStatus">&nbsp;</span></li>
         </ul>
         <div id="userLocationMap">&nbsp;</div>
+        <div id="messageOutput">
+            <span data-type="message">&nbsp;</span>
+            <span data-type="user">&nbsp;</span>
+        </div>
+        <form name="messagecenter" id="messagecenter" action="#">
+            <input type="text" placeholder="Something to say?" required id="messageTextbox">
+            <input type="submit" value="Post">
+        </form>
     </aside>
     <section>
         <h1>TODO List</h1>
@@ -27,21 +57,19 @@
         <ul id="todoList" contenteditable>
             <li>insert item</li>
         </ul>
-        <div id="commandContainer">
+        <div class="commandContainer">
             <button id="saveButton">Save</button>
             <button id="clearButton">Clear</button>
         </div>
     </section>
-    <script src="js/lib/namespace.js"></script>
-    <script src="js/lib/storage.js"></script>
-    <script src="js/lib/webdbstorage.js"></script>
-    <script src="js/lib/notificator.js"></script>
-    <script src="js/lib/websocket.js"></script>
-    <script src="js/todolist-profile.js"></script>
-    <script src="js/todolist-appcache.js"></script>
-    <script src="js/todolist-storage.js"></script>
-    <script src="js/todolist-location.js"></script>
-    <script src="js/todolist-connectivity.js"></script>
+    <div id="overlayHelper">&nbsp;</div>
+    <!-- In dev mode is ok to put all these scripts, but in prod -->
+    <!-- they should be obfuscated, minified and packaged in a single file -->
     <script src="js/todolist-websocket.js"></script>
+    <script src="js/todolist-profile.js"></script>
+    <script src="js/todolist-storage.js"></script>
+    <script src="js/todolist-connectivity.js"></script>
+    <script src="js/todolist-location.js"></script>
+    <script src="js/todolist-appcache.js"></script>
 </body>
 </html>

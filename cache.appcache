@@ -1,7 +1,7 @@
 CACHE MANIFEST
 # this is not relevant, but it matters 
 # if we want to notify a change in a file
-# version 1.0.1
+# version 1.0.2
 
 CACHE:
 /html5/todolist.html
@@ -13,12 +13,12 @@ CACHE:
 /html5/js/lib/webdbstorage.js
 /html5/js/lib/notificator.js
 /html5/js/lib/websocket.js
-/html5/js/todolist-profile.js
-/html5/js/todolist-appcache.js
-/html5/js/todolist-storage.js
-/html5/js/todolist-location.js
-/html5/js/todolist-connectivity.js
 /html5/js/todolist-websocket.js
+/html5/js/todolist-profile.js
+/html5/js/todolist-storage.js
+/html5/js/todolist-connectivity.js
+/html5/js/todolist-location.js
+/html5/js/todolist-appcache.js
 /html5/img/information.gif
 /html5/img/success.png
 
