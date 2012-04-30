@@ -34,7 +34,7 @@ namespace('com.abaris', function(ns) {
         */
         me.synchronizeItems = function() {
             var todoItemsAsText = [];
-            var todoItems = document.getElementsByTagName("li");
+            var todoItems = todoList.getElementsByTagName("li");
             var itemsLength = todoItems.length;
             for(var i = 0; i < itemsLength; i++) {
                 var todoItem = todoItems[i];

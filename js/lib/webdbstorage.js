@@ -51,7 +51,7 @@ namespace('com.abaris', function(ns) {
             for(var todoItem in todoItemsAsText) {
                 tx.executeSql(INSERT_STATEMENT, [todoItemsAsText[todoItem]]);
             }
-        });        
+        });
     };
 
     ns.Storage.prototype.removeItems = function() {
