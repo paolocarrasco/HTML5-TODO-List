@@ -39,7 +39,9 @@
         };
 
         webSocketConnector.onclose = function () {
+            delete sessionStorage.username;
             websocketStatus.classList.remove(CONNECTED_CLASS_NAME);
+            sessionStatus.classList.remove(CONNECTED_CLASS_NAME);
         };
 
         webSocketConnector.onmessage = function(msg) {
