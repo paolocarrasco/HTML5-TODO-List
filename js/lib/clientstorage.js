@@ -1,12 +1,12 @@
 namespace('com.abaris', function(ns) {
     ns.Storage.prototype.initialize = function(successCallback) {
-        if(window.localStorage && localStorage.todoItems) {
+        if(window.localStorage) {
             successCallback();
         }
     };
 
     ns.Storage.prototype.retrieveItemsFromDataSource = function(successCallback) {
-        successCallback(JSON.parse(localStorage.todoItems));
+        successCallback(JSON.parse(localStorage.todoItems || {}));
     };
 
     ns.Storage.prototype.saveItemsToDataSource = function(todoItemsAsText) {

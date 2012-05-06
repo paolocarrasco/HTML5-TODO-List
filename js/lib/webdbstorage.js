@@ -19,8 +19,7 @@ namespace('com.abaris', function(ns) {
         // creating the table we'll be working on
         db.transaction(function (tx) {
             tx.executeSql(CREATE_TABLE_STATEMENT);
-            // call the retrieval of items
-            ns.Storage.prototype.retrieveItemsFromDataSource.call(this, successCallback);
+            successCallback();
         });
     };
 

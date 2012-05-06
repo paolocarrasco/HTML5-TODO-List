@@ -11,6 +11,7 @@
     var messageForm = document.forms['messagecenter'];
     var messageInput = document.getElementById('messageTextbox');
     var overlayHelper = document.getElementById('overlayHelper');
+    var logoutToken = { ns: WEBSOCKET_NAMESPACE, type: 'logout' };
     var webSocketConnector;
     var sourceId;
 
@@ -19,19 +20,14 @@
     window.addEventListener('load', function() {
         var host = 'ws://abaris.com.pe:8787/jWebSocket/jWebSocket';
         webSocketConnector = new com.abaris.WebSocketConnector(host);
+        webSocketConnector.sendToken = function(token) {
+            webSocketConnector.send(JSON.stringify(token));
+        };
 
         webSocketConnector.onopen = function () {
             websocketStatus.classList.add(CONNECTED_CLASS_NAME);
             sessionStatus.addEventListener('click', function () {
-                if(!!sessionStorage.username) {
-                    // perform a logout
-                    var logoutToken = {
-                        ns: WEBSOCKET_NAMESPACE,
-                        type: 'logout'
-                    };
-                    webSocketConnector.send(JSON.stringify(logoutToken));
-                }
-                else {
+                if(!closeSession()) {
                     overlayHelper.classList.add('overlay');
                     loginForm.classList.remove('hidden');
                 }
@@ -70,15 +66,7 @@
     });
 
     window.addEventListener('unload', function() {
-        if(sessionStorage.username) {
-            // perform a logout
-            var logoutToken = {
-                ns: WEBSOCKET_NAMESPACE,
-                type: 'logout'
-            };
-            delete sessionStorage.username;
-            webSocketConnector.send(JSON.stringify(logoutToken));
-        }
+        closeSession();
         webSocketConnector.quit();
     });
 
@@ -92,7 +80,7 @@
             data: messageInput.value,
             senderIncluded: true,
             responseRequested: true };
-        webSocketConnector.send(JSON.stringify(message));
+        webSocketConnector.sendToken(message);
         e.preventDefault();
     });
 
@@ -104,7 +92,7 @@
             password: passwordInput.value,
             encoding: null,
             pool: null };
-        webSocketConnector.send(JSON.stringify(loginToken));
+        webSocketConnector.sendToken(loginToken);
         e.preventDefault();
         this.reset();
     });
@@ -113,5 +101,15 @@
         overlayHelper.classList.remove('overlay');
         loginForm.classList.add('hidden');
     });
+
+    function closeSession() {
+        if(sessionStorage.username) {
+            // perform a logout
+            delete sessionStorage.username;
+            webSocketConnector.sendToken(logoutToken);
+            return true;
+        }
+        return false;
+    }
 
 })();

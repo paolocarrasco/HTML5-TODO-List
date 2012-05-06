@@ -1,7 +1,8 @@
-/**
-* Helps to manage the notifications.
-*/
 namespace('com.abaris', function(ns) {
+
+    /**
+    * Helps to manage the notifications.
+    */
     ns.Notificator = function() {
         var NOTIFICATION_TIME = 3000;
 

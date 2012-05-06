@@ -1,9 +1,15 @@
 namespace('com.abaris', function(ns) {
+    /**
+    * Class to communicate with a web socket entrypoint
+    */
     ns.WebSocketConnector = function (url) {
         // it contains the web socket connection
         var socket;
         var me = this;
         
+        /**
+        * Send a message to the host
+        */
         me.send = function(msg){
             if (!msg) {
                 console.warn('Message to be sent can not be empty');
@@ -18,13 +24,18 @@ namespace('com.abaris', function(ns) {
             }
         }
 
+        /**
+        * It should be invoked when the app is over
+        */
         me.quit = function() {
             console.log('The fun is over...');
             socket.close();
             socket = null;
         }
 
-        // initializing the websocket
+        /**
+        * Initializing the websocket
+        */
         me.initialize = function() {
             try {
                 socket = new WebSocket(url);
