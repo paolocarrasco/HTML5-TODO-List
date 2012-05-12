@@ -1,7 +1,14 @@
-
 (function() {
-    // the list that contains the items 
-    var defaultText,
+    var _dbName = 'tododb',
+        // in order to make upgrades from now on
+        _dbVersion = '',
+        // description of the database
+        _dbDescription = 'TODO List Database',
+        // creating the database with a size of 2 * 1024 * 1024 bytes
+        _dbSize = 2097152,
+        // default text of the item if no items were retrieved
+        defaultText,
+        // the list that contains the items 
         todoList = document.getElementById("todoList");
 
     window.addEventListener('load', function () {
@@ -49,6 +56,8 @@
 
     with(com.abaris) {
         Storage.prototype.notificator = new Notificator();
-        var storage = new Storage();
+        var storage = Storage.constructor.call(this, _dbName, 
+                _dbVersion, _dbDescription, _dbSize);
     }
+
 })();

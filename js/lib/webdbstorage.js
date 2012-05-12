@@ -1,24 +1,33 @@
 namespace('com.abaris', function(ns) {
-    var db; // the variable that will contain the database object
-    var DB_NAME = 'tododb';
-    var DB_DESCRIPTION = 'TODO List Database';
-    var DB_VERSION = ''; // in order to make upgrades from now on
-    var DB_SIZE = 2097152;
-    var CREATE_TABLE_STATEMENT = 'CREATE TABLE IF NOT EXISTS item (text)';
-    var INSERT_STATEMENT = 'INSERT INTO item (text) VALUES (?)';
-    var SELECT_STATEMENT = 'SELECT text FROM item';
-    var DELETE_STATEMENT = 'DELETE FROM item';
-   
+    var db, // the variable that will contain the database object
+        _createTableStatement = 'CREATE TABLE IF NOT EXISTS item (text)',
+        _insertStatement = 'INSERT INTO item (text) VALUES (?)',
+        _selectStatement = 'SELECT text FROM item',
+        _deleteStatement = 'DELETE FROM item',
+        _dbName,
+        _dbVersion,
+        _dbDescription,
+        _dbSize;
+
+    ns.Storage.constructor = function(dbName, 
+            dbVersion, dbDescription, dbSize) {
+        _dbName = dbName;
+        _dbVersion = dbVersion;
+        _dbDescription = dbDescription;
+        _dbSize = dbSize;
+        return new ns.Storage();
+    };
+
     ns.Storage.prototype.initialize = function(successCallback) {
         // if no openDatabase function... nothing to do with this app
         if(!window.openDatabase) return;
-        // creating the database with a size of 2 * 1024 * 1024 bytes
-        db = openDatabase(DB_NAME, DB_VERSION, DB_DESCRIPTION, DB_SIZE);
+        // creating the database
+        db = openDatabase(_dbName, _dbVersion, _dbDescription, _dbSize);
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         // creating the table we'll be working on
         db.transaction(function (tx) {
-            tx.executeSql(CREATE_TABLE_STATEMENT);
+            tx.executeSql(_createTableStatement);
             successCallback();
         });
     };
@@ -27,7 +36,7 @@ namespace('com.abaris', function(ns) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         db.transaction(function (tx) {
-            tx.executeSql(SELECT_STATEMENT, [], function (tx, results) {
+            tx.executeSql(_selectStatement, [], function (tx, results) {
                 var itemsLoaded = [];
                 var len = results.rows.length;
                 // passing the stored items to the resulting variable
@@ -45,10 +54,10 @@ namespace('com.abaris', function(ns) {
         if(!db) return;
         // make the insertions in a single transaction
         db.transaction(function(tx) {
-            tx.executeSql(DELETE_STATEMENT, []);
+            tx.executeSql(_deleteStatement, []);
             // iterate over all the items received to insert them
             for(var todoItem in todoItemsAsText) {
-                tx.executeSql(INSERT_STATEMENT, [todoItemsAsText[todoItem]]);
+                tx.executeSql(_insertStatement, [todoItemsAsText[todoItem]]);
             }
         });
     };
@@ -58,7 +67,7 @@ namespace('com.abaris', function(ns) {
         if(!db) return;
         // the query to delete the items
         db.transaction(function (tx) {
-            tx.executeSql(DELETE_STATEMENT, []);
+            tx.executeSql(_deleteStatement, []);
         });
     };
 

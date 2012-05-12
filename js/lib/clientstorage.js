@@ -4,9 +4,14 @@ namespace('com.abaris', function(ns) {
             successCallback();
         }
     };
+    
+    ns.Storage.constructor = function() {
+        return new ns.Storage();
+    };
 
     ns.Storage.prototype.retrieveItemsFromDataSource = function(successCallback) {
-        successCallback(JSON.parse(localStorage.todoItems || {}));
+        var items = localStorage.todoItems;
+        successCallback(items ? JSON.parse(items) : {});
     };
 
     ns.Storage.prototype.saveItemsToDataSource = function(todoItemsAsText) {
