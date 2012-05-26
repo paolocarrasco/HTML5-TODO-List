@@ -26,9 +26,9 @@
                     itemsList.push("<li>" + itemsLoaded[item] + "</li>");
                 }
                 todoList.innerHTML = itemsList.join('');
-            });
+            }, {name: 'item', columns: ['text']});
 
-        });
+        }, [{name: 'item', columns: ['text']}]);
     });
 
     function handleStorage() {
@@ -46,12 +46,12 @@
             var todoItem = todoItems[i];
             todoItemsAsText.push(todoItem.innerText || todoItem.textContent);
         }
-        storage.synchronizeItems(todoItemsAsText);
+        storage.synchronizeItems(todoItemsAsText, {name: 'item', columns: ['text']});
     }
 
     function clear() {
-        storage.clearItems();
-        todoList.innerHTML = ['<li>', defaultText, '</li'].join('');
+        storage.clearItems({name: 'item'});
+        todoList.innerHTML = ['<li>', defaultText, '</li>'].join('');
     }
 
     with(com.abaris) {

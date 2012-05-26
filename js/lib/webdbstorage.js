@@ -1,9 +1,9 @@
 namespace('com.abaris', function(ns) {
     var db, // the variable that will contain the database object
-        _createTableStatement = 'CREATE TABLE IF NOT EXISTS item (text)',
-        _insertStatement = 'INSERT INTO item (text) VALUES (?)',
-        _selectStatement = 'SELECT text FROM item',
-        _deleteStatement = 'DELETE FROM item',
+        _createTableStatement = 'CREATE TABLE IF NOT EXISTS ${table} (${columns})',
+        _insertStatement = 'INSERT INTO ${table} (${columns}) VALUES (${columnValues})',
+        _selectStatement = 'SELECT ${columns} FROM ${table}',
+        _deleteStatement = 'DELETE FROM ${table}',
         _dbName,
         _dbVersion,
         _dbDescription,
@@ -18,7 +18,7 @@ namespace('com.abaris', function(ns) {
         return new ns.Storage();
     };
 
-    ns.Storage.prototype.initialize = function(successCallback) {
+    ns.Storage.prototype.initialize = function(successCallback, entityStructures) {
         // if no openDatabase function... nothing to do with this app
         if(!window.openDatabase) return;
         // creating the database
@@ -27,16 +27,24 @@ namespace('com.abaris', function(ns) {
         if(!db) return;
         // creating the table we'll be working on
         db.transaction(function (tx) {
-            tx.executeSql(_createTableStatement);
+            for(var i = 0, entityStructure; entityStructure = entityStructures[i]; i++) {
+                var creationTableStatement = _createTableStatement
+                        .replace(/\${table}/, entityStructure.name)
+                        .replace(/\${columns}/, entityStructure.columns.join());
+                tx.executeSql(creationTableStatement);
+            }
             successCallback();
         });
     };
 
-    ns.Storage.prototype.retrieveItemsFromDataSource = function(successCallback) {
+    ns.Storage.prototype.retrieveItemsFromDataSource = function(successCallback, entityStructure) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         db.transaction(function (tx) {
-            tx.executeSql(_selectStatement, [], function (tx, results) {
+            var selectStatement = _selectStatement
+                    .replace(/\${table}/, entityStructure.name)
+                    .replace(/\${columns}/, entityStructure.columns);
+            tx.executeSql(selectStatement, [], function (tx, results) {
                 var itemsLoaded = [];
                 var len = results.rows.length;
                 // passing the stored items to the resulting variable
@@ -49,25 +57,33 @@ namespace('com.abaris', function(ns) {
         });
     };
 
-    ns.Storage.prototype.saveItemsToDataSource = function(todoItemsAsText) {
+    ns.Storage.prototype.saveItemsToDataSource = function(todoItemsAsText, entityStructure) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         // make the insertions in a single transaction
         db.transaction(function(tx) {
-            tx.executeSql(_deleteStatement, []);
+            var deleteStatement = _deleteStatement.replace(/\${table}/, entityStructure.name);
+            tx.executeSql(deleteStatement, []);
             // iterate over all the items received to insert them
+            var columns = entityStructure.columns,
+                questionMarks = columns.map(function() { return '?'; }),
+                insertStatement = _insertStatement
+                    .replace(/\${table}/, entityStructure.name)
+                    .replace(/\${columns}/, columns.join())
+                    .replace(/\${columnValues}/, questionMarks.join());
             for(var todoItem in todoItemsAsText) {
-                tx.executeSql(_insertStatement, [todoItemsAsText[todoItem]]);
+                tx.executeSql(insertStatement, [todoItemsAsText[todoItem]]);
             }
         });
     };
 
-    ns.Storage.prototype.removeItems = function() {
+    ns.Storage.prototype.removeItems = function(entity) {
         // if the database wasn't created, nothing could be done from now on
         if(!db) return;
         // the query to delete the items
         db.transaction(function (tx) {
-            tx.executeSql(_deleteStatement, []);
+            var deleteStatement = _deleteStatement.replace(/\${table}/, entity.name);
+            tx.executeSql(deleteStatement, []);
         });
     };
 
